@@ -15,7 +15,7 @@ import {
   Sidebar,
   Visibility
 } from "semantic-ui-react";
-
+import "semantic-ui-css/semantic.min.css";
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -23,8 +23,9 @@ import {
 const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
+      color="red"
       as="h1"
-      content="Imagine-a-Company"
+      content="Du Pays-Basque aux Grandes Ecoles"
       inverted
       style={{
         fontSize: mobile ? "2em" : "4em",
@@ -35,7 +36,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as="h2"
-      content="Do whatever you want when you want to."
+      content="L'annuaire de recherche"
       inverted
       style={{
         fontSize: mobile ? "1.5em" : "1.7em",
@@ -43,7 +44,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em"
       }}
     />
-    <Button primary size="huge">
+    <Button size="huge" color="green">
       Annuaire
       <Icon name="right arrow" />
     </Button>
@@ -89,13 +90,25 @@ class DesktopContainer extends Component {
               size="large"
             >
               <Container>
-                <Menu.Item as="a" active href="./">
+                <Menu.Item as="a" active href="./" color="red">
                   Accueil
                 </Menu.Item>
-                <Menu.Item as="a">Entreprise</Menu.Item>
-                <Menu.Item as="a">Membres</Menu.Item>
+                <Menu.Item as="a" active href="./entreprise" color="green">
+                  Entreprise
+                </Menu.Item>
+                <Menu.Item as="a" active href="./membres" color="red">
+                  Membres
+                </Menu.Item>
+                <Menu.Item as="a" active href="./annuaire" color="green">
+                  Annuaire
+                </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed}>
+                  <Button
+                    as="a"
+                    inverted={!fixed}
+                    color="red"
+                    href="./connexion"
+                  >
                     Connectez-vous
                   </Button>
                   <Button
@@ -103,6 +116,7 @@ class DesktopContainer extends Component {
                     inverted={!fixed}
                     primary={fixed}
                     style={{ marginLeft: "0.5em" }}
+                    color="green"
                   >
                     Enregistrez-vous
                   </Button>
@@ -150,13 +164,11 @@ class MobileContainer extends Component {
             visible={sidebarOpened}
           >
             <Menu.Item as="a" active>
-              Home
+              Accueil
             </Menu.Item>
-            <Menu.Item as="a">Work</Menu.Item>
-            <Menu.Item as="a">Company</Menu.Item>
-            <Menu.Item as="a">Careers</Menu.Item>
-            <Menu.Item as="a">Log in</Menu.Item>
-            <Menu.Item as="a">Sign Up</Menu.Item>
+            <Menu.Item as="a">Entreprise</Menu.Item>
+            <Menu.Item as="a">Membres</Menu.Item>
+            <Menu.Item as="a">Annuaire</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
@@ -177,10 +189,10 @@ class MobileContainer extends Component {
                   </Menu.Item>
                   <Menu.Item position="right">
                     <Button as="a" inverted>
-                      Log in
+                      Connexion
                     </Button>
                     <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
-                      Sign Up
+                      Enregistrement
                     </Button>
                   </Menu.Item>
                 </Menu>
