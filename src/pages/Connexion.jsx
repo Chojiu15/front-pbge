@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Radio,
+  Checkbox,
   Button,
   Form,
   Grid,
@@ -23,34 +25,51 @@ const LoginForm = () => (
         height: 100%;
       }
     `}</style>
+    <Button
+      color="red"
+      href="./"
+      style={{ paddingtop: "3em", paddingbottom: "3em" }}
+    >
+      Accueil
+    </Button>
     <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
-          <Image src="/logo.png" /> Log-in to your account
+        <Header as="h2" color="red" textAlign="center">
+          Connectez-vous à votre compte
         </Header>
+        <form>
+          <div>
+            <Radio label={{ children: "Entreprise" }} />
+            <Radio style={{ margin: "0.4em" }} label={{ children: "Membre" }} />
+          </div>
+        </form>
+
         <Form size="large">
           <Segment stacked>
             <Form.Input
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
+              placeholder="Adresse e-mail"
             />
             <Form.Input
               fluid
               icon="lock"
               iconPosition="left"
-              placeholder="Password"
+              placeholder="Mot de passe"
               type="password"
             />
 
-            <Button color="teal" fluid size="large">
-              Login
+            <Button color="green" fluid size="large">
+              Connexion
             </Button>
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="#">Sign Up</a>
+          Pas encore de compte ?{" "}
+          <a href="./enregistrement" color="red">
+            Créer un compte
+          </a>
         </Message>
       </Grid.Column>
     </Grid>
