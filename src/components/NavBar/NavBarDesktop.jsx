@@ -20,6 +20,12 @@ import logoLinear from "./logo_linear.jpeg";
 export default class DesktopNavBarContainer extends Component {
     state = {};
 
+    constructor(props) {
+        super(props);
+        this.hideFixedMenu = this.hideFixedMenu.bind(this);
+        this.showFixedMenu = this.showFixedMenu.bind(this);
+    }
+
     hideFixedMenu = () => this.setState({fixed: false});
     showFixedMenu = () => this.setState({fixed: true});
 
@@ -45,7 +51,7 @@ export default class DesktopNavBarContainer extends Component {
                             inverted={!fixed}
                             pointing={!fixed}
                             secondary={!fixed}
-                            size="medium"
+                            size="large"
                         >
                             <Container fluid>
                                 <Image size='tiny' src={logoLinear} style={{ marginRight: '1.5em' }} wrapped/>
@@ -66,10 +72,8 @@ export default class DesktopNavBarContainer extends Component {
                                         Connectez-vous
                                     </Button>
                                     <Button
-                                        as="a"
-                                        inverted={!fixed}
-                                        style={{marginLeft: "0.5em"}}
-                                    >
+                                        as="a" inverted={!fixed}
+                                        style={{marginLeft: "0.5em"}}>
                                         Enregistrez-vous
                                     </Button>
                                 </Menu.Item>

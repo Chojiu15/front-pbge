@@ -15,6 +15,12 @@ import "./NavBar.css";
 export default class MobileConnectedNavBarContainer extends Component {
     state = {};
 
+    constructor(props) {
+        super(props);
+        this.handlePusherClick = this.handlePusherClick.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+    }
+
     handlePusherClick = () => {
         const {sidebarOpened} = this.state;
 
@@ -70,10 +76,10 @@ export default class MobileConnectedNavBarContainer extends Component {
                                     </Menu.Item>
                                     <Menu.Item position="right">
                                         <Button as="a" inverted>
-                                            Connexion
+                                            Mon Profil
                                         </Button>
                                         <Button as="a" inverted style={{marginLeft: "0.5em"}}>
-                                            Enregistrement
+                                            Se Déconnecter
                                         </Button>
                                     </Menu.Item>
                                 </Menu>

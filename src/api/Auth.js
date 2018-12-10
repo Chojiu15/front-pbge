@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const SESSION_KEY = "session_token";
 const CHECK_ROUTE = "/me";
 

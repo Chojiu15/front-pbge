@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 
-import NavBarLayout from "../components/NavBar";
+import NavBarLayout from "../components/NavBar/NavBar";
 import * as Auth from "../api/Auth.js";
 import {createTokenRequest} from "../api/Api.params";
-import HomeContent from "../components/HomeContent";
+import HomeContent from "../components/Homepage/HomeContent";
 
 export default class HomepageLayout extends Component {
 
@@ -21,7 +21,7 @@ export default class HomepageLayout extends Component {
         let token = Auth.getToken();
         if (token == null) return false;
         else {
-            const checkToken = createTokenRequest();
+            const checkToken = createTokenRequest(token);
             const checkRequest = Auth.tokenChecker(checkToken);
             checkRequest().then(response => {
                 this.setState({
@@ -40,7 +40,9 @@ export default class HomepageLayout extends Component {
     render() {
         this.loginCheck();
         return (
-            <NavBarLayout userData={this.state} children={<HomeContent/>}/>
+            <div>
+                <NavBarLayout userData={this.state} children={<HomeContent/>}/>
+            </div>
         );
     }
 }

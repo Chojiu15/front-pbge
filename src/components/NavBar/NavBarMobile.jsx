@@ -15,6 +15,12 @@ import "./NavBar.css";
 export default class MobileNavBarContainer extends Component {
     state = {};
 
+    constructor(props) {
+        super(props);
+        this.handlePusherClick = this.handlePusherClick.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+    }
+
     handlePusherClick = () => {
         const {sidebarOpened} = this.state;
 
