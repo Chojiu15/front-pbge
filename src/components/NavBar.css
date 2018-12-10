@@ -1,0 +1,15 @@
+.menuItemRed {
+    text-decoration: none;
+}
+
+.MenuItemRed.hover {
+    text-decoration: underline;
+}
+
+.MenuItemGreen {
+
+}
+
+.MenuItemGreen.hover {
+
+}

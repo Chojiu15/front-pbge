@@ -12,9 +12,12 @@ import {
 
 import {createRequest} from "../api/Api.params";
 import * as Auth from "../api/Auth";
+import NavBarLayout from "../components/NavBar";
 
 const MEMBER_ROUTE = "/member/login";
 const COMPANY_ROUTE = "/company/login";
+const BAD_CREDENTIALS_MSG = "Login ou mot de passe incorrect.";
+const SERVER_ERROR_MSG = "An expected error happened, try again later.";
 
 export default class LoginForm extends Component {
 
@@ -23,20 +26,28 @@ export default class LoginForm extends Component {
         this.state = {
             value: 'member'
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleRadioChange = this.handleRadioChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    handleChange = (e, { value }) => this.setState({ value });
+    handleRadioChange = (e, {value}) => this.setState({value});
 
-    onSubmit(credentials , usertype) {
+    onSubmit(credentials, usertype) {
         let route = "";
         usertype === "member" ? route = MEMBER_ROUTE : route = COMPANY_ROUTE;
 
         const request = createRequest();
         const authentication = Auth.authRequest(request);
         authentication(route, credentials).then(response => {
-            console.log(response.data);
+            Auth.saveToken(response.data.token);
+            this.props.history.push("/");
+        }).catch(e => {
+            if (e.response.status === 401) {
+                alert(BAD_CREDENTIALS_MSG);
+            }
+            else {
+                alert("Error " + e.response.status + ": " + SERVER_ERROR_MSG)
+            }
         });
     }
 
@@ -55,13 +66,7 @@ export default class LoginForm extends Component {
         height: 100%;
       }
     `}</style>
-                <Button
-                    color="red"
-                    href="./"
-                    style={{paddingtop: "3em", paddingbottom: "3em"}}
-                >
-                    Accueil
-                </Button>
+                <NavBarLayout/>
                 <Grid textAlign="center" style={{height: "100%"}} verticalAlign="middle">
                     <Grid.Column style={{maxWidth: 450}}>
                         <Header as="h2" color="red" textAlign="center">
@@ -83,7 +88,7 @@ export default class LoginForm extends Component {
                                     name='radioGroup'
                                     value='member'
                                     checked={this.state.value === 'member'}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleRadioChange}
                                 />
                             </Form.Field>
                             <Form.Field>
@@ -92,7 +97,7 @@ export default class LoginForm extends Component {
                                     name='radioGroup'
                                     value='company'
                                     checked={this.state.value === 'company'}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleRadioChange}
                                 />
                             </Form.Field>
                             <Segment stacked>
