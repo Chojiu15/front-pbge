@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://127.0.0.1:8000";
+//const baseUrl = "http://127.0.0.1:8000";
+const baseUrl = "https://pbge.herokuapp.com/";
 const accept = "application/json";
 
 export const createTokenRequest = token =>

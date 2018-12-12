@@ -75,10 +75,10 @@ export default class MobileNavBarContainer extends Component {
                                         <Icon name="sidebar"/>
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Button as="a" inverted>
+                                        <Button href="./connection" as="a" inverted>
                                             Connexion
                                         </Button>
-                                        <Button as="a" inverted style={{marginLeft: "0.5em"}}>
+                                        <Button href="./enregistrement" as="a" inverted style={{marginLeft: "0.5em"}}>
                                             Enregistrement
                                         </Button>
                                     </Menu.Item>

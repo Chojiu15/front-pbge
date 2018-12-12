@@ -8,7 +8,7 @@ import {Button,
     Form
 } from "semantic-ui-react";
 
-import {createRequest} from "../../api/Api.params";
+import {createRequest} from "../../api/Request.params";
 import * as Auth from "../../api/Auth";
 
 const MEMBER_ROUTE = "/member/login";

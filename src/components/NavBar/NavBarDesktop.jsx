@@ -73,6 +73,7 @@ export default class DesktopNavBarContainer extends Component {
                                     </Button>
                                     <Button
                                         as="a" inverted={!fixed}
+                                        href="./enregistrement"
                                         style={{marginLeft: "0.5em"}}>
                                         Enregistrez-vous
                                     </Button>
