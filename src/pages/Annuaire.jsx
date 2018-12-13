@@ -22,7 +22,11 @@ export default class RadioExampleRadioGroup extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+<<<<<<< HEAD
   onSubmit(type, sector) {
+=======
+  onSubmit( type, sector ) {
+>>>>>>> c790ee6ae9b344cd5e4d5805a0fc92701bd1249f
     if (type === "member") {
       //console.log(HREF + `/api/members.json`);
       const request = createRequest();
@@ -48,6 +52,7 @@ export default class RadioExampleRadioGroup extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <NavBarLayout userData={this.state}>
         <Form
           style={{ marginTop: "10em", marginLeft: "40em" }}
@@ -93,6 +98,50 @@ export default class RadioExampleRadioGroup extends Component {
         </Form>
         /
       </NavBarLayout>
+=======
+      <Form
+        style={{ marginTop: "14em", marginLeft: "40em" }}
+        onSubmit={e => {
+          e.preventDefault();
+          const type = this.state.value;
+          const sector = this.state.sector;
+          this.onSubmit( type, sector );
+        }}
+      >
+        <Form.Field>
+          <Radio
+            label="Entreprise"
+            name="radioGroup"
+            value="company"
+            checked={this.state.value === "company"}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Radio
+            label="Membre"
+            name="radioGroup"
+            value="member"
+            checked={this.state.value === "member"}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Dropdown
+            style={{ marginLeft: "-20em" }}
+            name="sector"
+            placeholder="Secteur d'activité"
+            fluid
+            selection
+            options={Activite}
+            onChange={this.handleSelect}
+          />
+        </Form.Field>
+        <Button color="green" type="submit">
+          Rechercher
+        </Button>
+      </Form>
+>>>>>>> c790ee6ae9b344cd5e4d5805a0fc92701bd1249f
     );
   }
 }
