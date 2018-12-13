@@ -20,7 +20,6 @@ export default () => {
         <Route exact path="/membres" component={Membres} />
         <Route exact path="/connexion" component={Connexion} />
         <Route exact path="/enregistrement" component={Register} />
-        <Route exact path="/annuairee" component={Annuaire} />
         <Route exact path="/annuaire" component={Select} />
 
         {/* <Route exact path="/annuaire" component={Annuaire} />
