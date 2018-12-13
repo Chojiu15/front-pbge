@@ -21,14 +21,13 @@ export default class RadioExampleRadioGroup extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit({ type, sector }) {
-    if (type === "members") {
+  onSubmit( type, sector ) {
+    if (type === "member") {
       //console.log(HREF + `/api/members.json`);
-      debugger;
       const request = createRequest();
       const getMembers = apiGetRequest(request);
       getMembers("/api/members").then(response => {
-        console.log(response.getContent());
+        console.log(response.data);
       });
 
       //   axios
@@ -54,7 +53,7 @@ export default class RadioExampleRadioGroup extends Component {
           e.preventDefault();
           const type = this.state.value;
           const sector = this.state.sector;
-          this.onSubmit({ type, sector });
+          this.onSubmit( type, sector );
         }}
       >
         <Form.Field>
