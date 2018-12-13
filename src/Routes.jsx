@@ -1,8 +1,9 @@
 import React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomepageLayout from "./pages/HomeLayout";
 import Connexion from "./pages/Connexion";
 import Register from "./pages/Register";
+import Annuaire from "./pages/Annuaire";
 
 /**
  * TODO : Make each component
@@ -10,13 +11,14 @@ import Register from "./pages/Register";
  */
 
 export default () => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={HomepageLayout}/>
-                <Route exact path="/connexion" component={Connexion}/>
-                <Route exact path="/enregistrement" component={Register}/>
-            </Switch>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={HomepageLayout} />
+        <Route exact path="/connexion" component={Connexion} />
+        <Route exact path="/enregistrement" component={Register} />
+        <Route exact path="/annuaire" component={Annuaire} />
+      </Switch>
+    </BrowserRouter>
+  );
 };
