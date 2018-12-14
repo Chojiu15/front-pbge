@@ -71,6 +71,7 @@ const HomeContent = () => (
         </p>
         <Button
           style={{ marginLeft: "19em" }}
+          color="green"
           target="blank"
           href="https://www.helloasso.com/associations/des-territoires-aux-grandes-ecoles/adhesions/plateforme-d-adhesions-et-de-dons-2018-2019"
         >
@@ -93,20 +94,40 @@ const HomeContent = () => (
                 Réseaux-sociaux
               </Header>
               <List link inverted>
-                <Button color="facebook">
+                <Button
+                  color="facebook"
+                  target="blank"
+                  href="https://www.facebook.com/DPBGE/"
+                >
                   <Icon name="facebook" /> Facebook
                 </Button>
 
-                <Button color="twitter">
+                <Button
+                  color="twitter"
+                  target="blank"
+                  href="https://twitter.com/dpbge"
+                >
                   <Icon name="twitter" /> Twitter
                 </Button>
-                <Button color="linkedin">
+                <Button
+                  color="linkedin"
+                  target="blank"
+                  href="https://www.linkedin.com/company-beta/11151375/"
+                >
                   <Icon name="linkedin" /> LinkedIn
                 </Button>
-                <Button color="instagram">
+                <Button
+                  color="instagram"
+                  target="blank"
+                  href="https://www.instagram.com/dpbge/"
+                >
                   <Icon name="instagram" /> Instagram
                 </Button>
-                <Button color="youtube">
+                <Button
+                  color="youtube"
+                  target="blank"
+                  href="https://www.youtube.com/channel/UCk0Hrx_PthwAYSrE7qCXrkg"
+                >
                   <Icon name="youtube" /> YouTube
                 </Button>
               </List>

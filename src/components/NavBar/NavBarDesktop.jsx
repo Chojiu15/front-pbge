@@ -54,22 +54,47 @@ export default class DesktopNavBarContainer extends Component {
               size="large"
             >
               <Container fluid>
-                <Image
+                {/* <Image
                   size="tiny"
                   src={logoLinear}
                   style={{ marginRight: "1.5em" }}
                   wrapped
-                />
-                <Menu.Item as="a" active href="./" color="red">
+                  hidden={fixed}
+                /> */}
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./"
+                  color="red"
+                  style={{ marginLeft: "1em", marginBottom: "0.2em" }}
+                >
                   Accueil
                 </Menu.Item>
-                <Menu.Item as="a" active href="./enregistrement" color="green">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./enregistrement"
+                  color="green"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Entreprises
                 </Menu.Item>
-                <Menu.Item as="a" active href="./membres" color="red">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./membres"
+                  color="red"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Membres
                 </Menu.Item>
-                <Menu.Item as="a" active href="./annuaire" color="green">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./annuaire"
+                  color="green"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Annuaire
                 </Menu.Item>
                 <Menu.Item position="right">
