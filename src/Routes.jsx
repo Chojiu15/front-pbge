@@ -4,6 +4,7 @@ import HomepageLayout from "./pages/HomeLayout";
 import Connexion from "./pages/Connexion";
 import Register from "./pages/Register";
 import Annuaire from "./pages/Annuaire";
+import Profil from "./pages/MyProfil";
 
 /**
  * TODO : Make each component
@@ -18,6 +19,7 @@ export default () => {
         <Route exact path="/connexion" component={Connexion} />
         <Route exact path="/enregistrement" component={Register} />
         <Route exact path="/annuaire" component={Annuaire} />
+        <Route exact path="/profil" component={Profil} />
       </Switch>
     </BrowserRouter>
   );

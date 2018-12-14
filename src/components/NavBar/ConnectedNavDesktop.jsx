@@ -61,26 +61,50 @@ export default class DesktopConnectedNavBarContainer extends Component {
               size="large"
             >
               <Container fluid>
-                <Image
+                {/* <Image
                   size="tiny"
                   src={logoLinear}
                   style={{ marginRight: "1.5em" }}
                   wrapped
-                />
-                <Menu.Item as="a" active href="./" color="red">
+                /> */}
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./"
+                  color="red"
+                  style={{ marginLeft: "1em", marginBottom: "0.2em" }}
+                >
                   Accueil
                 </Menu.Item>
-                <Menu.Item as="a" active href="./" color="green">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./"
+                  color="green"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Entreprises
                 </Menu.Item>
-                <Menu.Item as="a" active href="./" color="red">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./"
+                  color="red"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Membres
                 </Menu.Item>
-                <Menu.Item as="a" active href="./" color="green">
+                <Menu.Item
+                  as="a"
+                  active
+                  href="./"
+                  color="green"
+                  style={{ marginBottom: "0.2em" }}
+                >
                   Annuaire
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed} href="./myprofile">
+                  <Button as="a" inverted={!fixed} href="./profil">
                     Mon Profil
                   </Button>
                   <Button
@@ -88,6 +112,7 @@ export default class DesktopConnectedNavBarContainer extends Component {
                     as="a"
                     inverted={!fixed}
                     style={{ marginLeft: "0.5em" }}
+                    href="./"
                   >
                     Se Déconnecter
                   </Button>

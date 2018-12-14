@@ -6,13 +6,14 @@ import {
   Header,
   List,
   Segment,
-  Icon
+  Icon,
+  Image
 } from "semantic-ui-react";
-import { Player } from "video-react";
+import logo from "../NavBar/logo.jpg";
 
 const HomeContent = () => (
   <Container>
-    <Segment style={{ padding: "8em 0em" }} vertical position="center">
+    <Segment style={{ padding: "7.3em 0em" }} vertical position="center">
       <Grid container stackable verticalAlign="middle">
         <Grid.Row>
           <Header
@@ -25,13 +26,19 @@ const HomeContent = () => (
           <Header as="h3" style={{ fontSize: "2em", marginLeft: "6em" }}>
             Agir pour l'égalité des chances et le développement du territoire
           </Header>
-          <Header as="h4" style={{ fontSize: "1.80em", marginLeft: "19em" }}>
-            <p>
-              Nos missions : <br />
-            </p>
+          <Image
+            src={logo}
+            style={{ marginRight: "34em", marginTop: "-10em" }}
+            height="300px"
+            width="150px"
+          />
+          <Header as="h4" style={{ fontSize: "1.80em", marginLeft: "-5.8em" }}>
+            <p>Nos missions :</p>
           </Header>
           <Header>
-            <p style={{ fontSize: "1em", marginLeft: "21em" }}>
+            <p
+              style={{ fontSize: "1em", marginLeft: "21em", marginTop: "-5em" }}
+            >
               Fédérer les étudiants et diplômés du territoire
               <br />
               Renforcer l'égalité des chances au Pays-Basque
