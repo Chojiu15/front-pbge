@@ -1,3 +1,3 @@
-export const authRequest = Register => (route, newUser) => {
+export const registerRequest = Register => (route, newUser) => {
     return Register.post(route, newUser);
 };

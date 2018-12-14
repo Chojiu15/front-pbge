@@ -12,6 +12,7 @@ import {
 
 import "./NavBar.css";
 import logoLinear from "./logo_linear.jpeg";
+import logo from "./logo.jpg";
 import * as Auth from "../../api/Auth";
 
 /* Heads up!
@@ -60,7 +61,7 @@ export default class DesktopConnectedNavBarContainer extends Component {
                             size="large"
                         >
                             <Container fluid>
-                                <Image size='tiny' src={logoLinear} style={{ marginRight: '1.5em' }} wrapped/>
+                                <Image size='tiny' src={logo} style={{ marginRight: '1.5em' }} wrapped/>
                                 <Menu.Item as="a" active href="./" color="red">
                                     Accueil
                                 </Menu.Item>

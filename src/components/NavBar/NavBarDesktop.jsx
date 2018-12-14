@@ -12,6 +12,7 @@ import {
 
 import "./NavBar.css";
 import logoLinear from "./logo_linear.jpeg";
+import logo from "./logo.jpg";
 
 /* Heads up!
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
@@ -54,7 +55,11 @@ export default class DesktopNavBarContainer extends Component {
                             size="large"
                         >
                             <Container fluid>
-                                <Image size='tiny' src={logoLinear} style={{ marginRight: '1.5em' }} wrapped/>
+                                <Image size='tiny'
+                                       src={logo}
+                                       style={{ marginRight: '1.5em' }}
+                                       hidden={fixed}
+                                       wrapped/>
                                 <Menu.Item as="a" active href="./" color="red">
                                     Accueil
                                 </Menu.Item>

@@ -1,5 +1,5 @@
 const SESSION_KEY = "session_token";
-const CHECK_ROUTE = "/me";
+const CHECK_ROUTE = "/myprofile";
 
 export const authRequest = Auth => (route, credentials) => {
     return Auth.post(route, credentials);

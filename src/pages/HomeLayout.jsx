@@ -38,7 +38,9 @@ export default class HomepageLayout extends Component {
     }
 
     render() {
-        this.loginCheck();
+        if(!this.state.isAuthenticated) {
+            this.loginCheck();
+        }
         return (
             <div>
                 <NavBarLayout userData={this.state} children={<HomeContent/>}/>

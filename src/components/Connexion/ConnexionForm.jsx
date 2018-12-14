@@ -22,7 +22,8 @@ export default class ConnexionForm extends Component {
         super(props);
         this.state = {
             value: 'member',
-            isAuthenticated: false
+            isAuthenticated: false,
+            loading:false
         };
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -35,6 +36,7 @@ export default class ConnexionForm extends Component {
         usertype === "member" ? route = MEMBER_ROUTE : route = COMPANY_ROUTE;
 
         const request = createRequest();
+        console.log(credentials);
         const authentication = Auth.authRequest(request);
         authentication(route, credentials).then(response => {
 
@@ -46,12 +48,15 @@ export default class ConnexionForm extends Component {
             if(typeof(e.response) !== "undefined") {
                 if (e.response.status === 401) {
                     alert(BAD_CREDENTIALS_MSG);
+                    this.setState({loading:false})
                 } else {
                     alert("Error " + e.response.status + ": " + SERVER_ERROR_MSG)
+                    this.setState({loading:false})
                 }
             }
             else {
                 alert(e.message);
+                this.setState({loading:false})
             }
         });
     }
@@ -72,11 +77,12 @@ export default class ConnexionForm extends Component {
                             Connectez-vous à votre compte
                         </Header>
 
-                        <Form size="large" onSubmit={e => {
+                        <Form size="large" loading={this.state.loading} onSubmit={e => {
                             e.preventDefault();
                             const username = e.target.elements.username.value;
                             const password = e.target.elements.password.value;
                             const usertype = this.state.value;
+                            this.setState({loading:true});
                             this.onSubmit({username, password}, usertype);
                         }}>
                             <Form.Field>
@@ -105,6 +111,7 @@ export default class ConnexionForm extends Component {
                                     icon="user"
                                     iconPosition="left"
                                     placeholder="Adresse e-mail"
+                                    required
                                 />
                                 <Form.Input
                                     name="password"
@@ -113,6 +120,7 @@ export default class ConnexionForm extends Component {
                                     iconPosition="left"
                                     placeholder="Mot de passe"
                                     type="password"
+                                    required
                                 />
 
                                 <Button type="submit" color="green" fluid size="large">
