@@ -1,5 +1,6 @@
-import React, {Component} from "react"
-import {Button,
+import React, {Component} from "react";
+import {
+    Button,
     Header,
     Message,
     Radio,
@@ -23,7 +24,7 @@ export default class ConnexionForm extends Component {
         this.state = {
             value: 'member',
             isAuthenticated: false,
-            loading:false
+            loading: false
         };
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -33,7 +34,7 @@ export default class ConnexionForm extends Component {
 
     onSubmit(credentials, usertype) {
         let route = "";
-        usertype === "member" ? route = MEMBER_ROUTE : route = COMPANY_ROUTE;
+        usertype === "member" ? (route = MEMBER_ROUTE) : (route = COMPANY_ROUTE);
 
         const request = createRequest();
         console.log(credentials);
@@ -45,18 +46,17 @@ export default class ConnexionForm extends Component {
             //this.props.history.push("/");
 
         }).catch(e => {
-            if(typeof(e.response) !== "undefined") {
+            if (typeof (e.response) !== "undefined") {
                 if (e.response.status === 401) {
                     alert(BAD_CREDENTIALS_MSG);
-                    this.setState({loading:false})
+                    this.setState({loading: false})
                 } else {
                     alert("Error " + e.response.status + ": " + SERVER_ERROR_MSG)
-                    this.setState({loading:false})
+                    this.setState({loading: false})
                 }
-            }
-            else {
+            } else {
                 alert(e.message);
-                this.setState({loading:false})
+                this.setState({loading: false})
             }
         });
     }
@@ -71,18 +71,21 @@ export default class ConnexionForm extends Component {
         height: 100%;
       }
     `}</style>
-                <Grid textAlign="center" style={{height: "100%"}} verticalAlign="middle">
+                <Grid
+                    textAlign="center"
+                    style={{height: "100%", padding: "4em"}}
+                    verticalAlign="middle"
+                >
                     <Grid.Column style={{maxWidth: 450}}>
                         <Header as="h2" color="red" textAlign="center">
                             Connectez-vous à votre compte
                         </Header>
-
                         <Form size="large" loading={this.state.loading} onSubmit={e => {
                             e.preventDefault();
                             const username = e.target.elements.username.value;
                             const password = e.target.elements.password.value;
                             const usertype = this.state.value;
-                            this.setState({loading:true});
+                            this.setState({loading: true});
                             this.onSubmit({username, password}, usertype);
                         }}>
                             <Form.Field>

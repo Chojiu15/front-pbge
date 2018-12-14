@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
-    Button,
-    Container,
-    Image,
-    Menu,
-    Responsive,
-    Segment,
-    Visibility
+  Button,
+  Container,
+  Image,
+  Menu,
+  Responsive,
+  Segment,
+  Visibility
 } from "semantic-ui-react";
 
 import "./NavBar.css";
@@ -20,82 +20,89 @@ import * as Auth from "../../api/Auth";
  * It can be more complicated, but you can create really flexible markup.
  */
 export default class DesktopConnectedNavBarContainer extends Component {
-    state = {};
+  state = {};
 
-    constructor(props) {
-        super(props);
-        this.hideFixedMenu = this.hideFixedMenu.bind(this);
-        this.showFixedMenu = this.showFixedMenu.bind(this);
-        this.logOut = this.logOut.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.hideFixedMenu = this.hideFixedMenu.bind(this);
+    this.showFixedMenu = this.showFixedMenu.bind(this);
+    this.logOut = this.logOut.bind(this);
+  }
 
-    hideFixedMenu = () => this.setState({fixed: false});
-    showFixedMenu = () => this.setState({fixed: true});
+  hideFixedMenu = () => this.setState({ fixed: false });
+  showFixedMenu = () => this.setState({ fixed: true });
 
-    logOut = () => {
-        Auth.removeToken();
-    };
+  logOut = () => {
+    Auth.removeToken();
+  };
 
-    render() {
-        const {children} = this.props;
-        const {fixed} = this.state;
+  render() {
+    const { children } = this.props;
+    const { fixed } = this.state;
 
-        return (
-            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                <Visibility
-                    once={false}
-                    onBottomPassed={this.showFixedMenu}
-                    onBottomPassedReverse={this.hideFixedMenu}
-                >
-                    <Segment
-                        inverted
-                        textAlign="center"
-                        style={{padding: "0.2em 0em 0.2em 0em"}}
-                        vertical
-                    >
-                        <Menu
-                            fixed={fixed ? "top" : null}
-                            inverted={!fixed}
-                            pointing={!fixed}
-                            secondary={!fixed}
-                            size="large"
-                        >
-                            <Container fluid>
-                                <Image size='tiny' src={logo} style={{ marginRight: '1.5em' }} wrapped/>
-                                <Menu.Item as="a" active href="./" color="red">
-                                    Accueil
-                                </Menu.Item>
-                                <Menu.Item as="a" active href="./" color="green">
-                                    Entreprises
-                                </Menu.Item>
-                                <Menu.Item as="a" active href="./" color="red">
-                                    Membres
-                                </Menu.Item>
-                                <Menu.Item as="a" active href="./" color="green">
-                                    Annuaire
-                                </Menu.Item>
-                                <Menu.Item position="right">
-                                    <Button as="a" inverted={!fixed} href="./myprofile">
-                                        Mon Profil
-                                    </Button>
-                                    <Button
-                                        onClick={this.logOut}
-                                        as="a" inverted={!fixed}
-                                        style={{marginLeft: "0.5em"}}>
-                                        Se Déconnecter
-                                    </Button>
-                                </Menu.Item>
-                            </Container>
-                        </Menu>
-                    </Segment>
-                </Visibility>
+    return (
+      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <Visibility
+          once={false}
+          onBottomPassed={this.showFixedMenu}
+          onBottomPassedReverse={this.hideFixedMenu}
+        >
+          <Segment
+            inverted
+            textAlign="center"
+            style={{ padding: "0.2em 0em 0.2em 0em" }}
+            vertical
+          >
+            <Menu
+              fixed={fixed ? "top" : null}
+              inverted={!fixed}
+              pointing={!fixed}
+              secondary={!fixed}
+              size="large"
+            >
+              <Container fluid>
+                <Image
+                  size="tiny"
+                  src={logoLinear}
+                  style={{ marginRight: "1.5em" }}
+                  wrapped
+                />
+                <Menu.Item as="a" active href="./" color="red">
+                  Accueil
+                </Menu.Item>
+                <Menu.Item as="a" active href="./" color="green">
+                  Entreprises
+                </Menu.Item>
+                <Menu.Item as="a" active href="./" color="red">
+                  Membres
+                </Menu.Item>
+                <Menu.Item as="a" active href="./" color="green">
+                  Annuaire
+                </Menu.Item>
+                <Menu.Item position="right">
+                  <Button as="a" inverted={!fixed} href="./myprofile">
+                    Mon Profil
+                  </Button>
+                  <Button
+                    onClick={this.logOut}
+                    as="a"
+                    inverted={!fixed}
+                    style={{ marginLeft: "0.5em" }}
+                  >
+                    Se Déconnecter
+                  </Button>
+                </Menu.Item>
+              </Container>
+            </Menu>
+          </Segment>
+        </Visibility>
 
-                {children}
-            </Responsive>
-        );
-    }
+        {children}
+      </Responsive>
+    );
+  }
 }
 
 DesktopConnectedNavBarContainer.propTypes = {
-    children: PropTypes.node
+  children: PropTypes.node
 };
