@@ -18,6 +18,7 @@ export const createRequest = () =>
     axios.create({
         baseURL: baseUrl,
         headers: {
-            Accept: json
+            Accept: json,
+            "Content-Type": json,
         }
     });

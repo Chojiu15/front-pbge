@@ -39,7 +39,6 @@ export default class ConnexionForm extends Component {
     usertype === "member" ? (route = MEMBER_ROUTE) : (route = COMPANY_ROUTE);
 
     const request = createRequest();
-    console.log(credentials);
     const authentication = Auth.authRequest(request);
     authentication(route, credentials)
       .then(response => {

@@ -17,7 +17,7 @@ import {createRequest} from "../api/Request.params";
 import * as Register from "../api/Register";
 const MEMBER_ROUTE = "/member/register";
 const COMPANY_ROUTE = "/company/register";
-const BAD_CREDENTIALS_MSG = "Login ou mot de passe incorrect.";
+const USER_EXISTS_MSG = "Cet utilisateur existe déjà.";
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -25,11 +25,8 @@ export default class RegisterForm extends Component {
     this.state = {
       value: "member",
       errorMsg: "",
-<<<<<<< HEAD
-      Redirect: false
-=======
+      redirect: false,
       loading: false
->>>>>>> 51bf806447b248d9058d7f798d5497fff2ef6999
     };
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -38,25 +35,25 @@ export default class RegisterForm extends Component {
   handleRadioChange = (e, { value }) => this.setState({ value });
 
   onSubmit(newUser, usertype) {
-<<<<<<< HEAD
-    console.log(newUser);
-    console.log(usertype);
-    this.setState({ redirect: true });
-=======
+
     let route = "";
     usertype === "member" ? (route = MEMBER_ROUTE) : (route = COMPANY_ROUTE);
 
     const request = createRequest();
     const register = Register.registerRequest(request);
     register(route, newUser).then(response => {
-
+      this.setState({ redirect: true });
     }).catch(e => {
       if (typeof (e.response) !== "undefined") {
-        alert(e.message);
+        if(e.response.status === 403) {
+          alert(USER_EXISTS_MSG);
+        }
+        else {
+          alert(e.message);
+        }
         this.setState({loading: false})
       }
     });
->>>>>>> 51bf806447b248d9058d7f798d5497fff2ef6999
   }
 
   render() {
@@ -83,32 +80,37 @@ export default class RegisterForm extends Component {
                   Créer un compte
                 </Header>
 
-<<<<<<< HEAD
+
                 <Form
-                  size={"large"}
-                  onSubmit={e => {
-                    e.preventDefault();
-                    const name = e.target.elements.lastName.value;
-                    const surname = e.target.elements.firstName.value;
-                    const username = e.target.elements.username.value;
-                    const password = e.target.elements.password.value;
-                    const passwordConfirm =
-                      e.target.elements.passwordConfirm.value;
-                    const usertype = this.state.value;
-                    this.onSubmit(
-                      { name, surname, username, password },
-                      usertype
-                    );
-                  }}
+                    size={"large"}
+                    loading={this.state.loading}
+                    onSubmit={e => {
+                      e.preventDefault();
+                      const name = e.target.elements.lastName.value;
+                      const surname = e.target.elements.firstName.value;
+                      const username = e.target.elements.username.value;
+                      const password = e.target.elements.password.value;
+                      const passwordConfirm = e.target.elements.passwordConfirm.value;
+                      if(password === passwordConfirm) {
+                        this.setState({loading: true});
+                        this.onSubmit(
+                            { name, surname, username, password },
+                            this.state.value
+                        );
+                      }
+                      else {
+                        this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
+                      }
+                    }}
                 >
                   <Segment>
                     <Form.Field>
                       <Radio
-                        label="Membre"
-                        name="radioGroup"
-                        value="member"
-                        checked={this.state.value === "member"}
-                        onChange={this.handleRadioChange}
+                          label="Membre"
+                          name="radioGroup"
+                          value="member"
+                          checked={this.state.value === "member"}
+                          onChange={this.handleRadioChange}
                       />
                     </Form.Field>
                     <Form.Field>
@@ -129,38 +131,6 @@ export default class RegisterForm extends Component {
                       label="Nom"
                       placeholder="Nom"
                       required
-=======
-              <Form
-                size={"large"}
-                loading={this.state.loading}
-                onSubmit={e => {
-                  e.preventDefault();
-                  const name = e.target.elements.lastName.value;
-                  const surname = e.target.elements.firstName.value;
-                  const username = e.target.elements.username.value;
-                  const password = e.target.elements.password.value;
-                  const passwordConfirm = e.target.elements.passwordConfirm.value;
-                  if(password === passwordConfirm) {
-                    this.setState({loading: true});
-                    this.onSubmit(
-                        { name, surname, username, password },
-                        this.state.value
-                    );
-                  }
-                  else {
-                    this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
-                  }
-                }}
-              >
-                <Segment>
-                  <Form.Field>
-                    <Radio
-                      label="Membre"
-                      name="radioGroup"
-                      value="member"
-                      checked={this.state.value === "member"}
-                      onChange={this.handleRadioChange}
->>>>>>> 51bf806447b248d9058d7f798d5497fff2ef6999
                     />
                     <Form.Input
                       type="name"
