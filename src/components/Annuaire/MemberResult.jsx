@@ -1,11 +1,11 @@
 import React from "react";
 import {Card, Image, Button} from "semantic-ui-react";
 
-const MemberResult = ({lastName, firstName}) => (
+const MemberResult = ({userData}) => (
     <Card>
         <Card.Content>
             <Image floated='left' size='medium' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'/>
-            <Card.Header>{lastName} {firstName}</Card.Header>
+            <Card.Header>{userData.name} {userData.surname}</Card.Header>
             <Card.Description>
                 Steve wants to add you to the group <strong>best friends</strong>
             </Card.Description>

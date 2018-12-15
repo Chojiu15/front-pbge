@@ -20,7 +20,7 @@ export default class RadioExampleRadioGroup extends Component {
             companies: "",
             sector: "",
             value: "member",
-            results: ""
+            results: []
         };
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -96,7 +96,7 @@ export default class RadioExampleRadioGroup extends Component {
                              position="center"
                              textAlign="center">
 
-                        <Results type={this.state.value} />
+                        <Results type={this.state.value} usersData={this.state.results}/>
                     </Segment>
                 </Container>
             </NavBarLayout>
