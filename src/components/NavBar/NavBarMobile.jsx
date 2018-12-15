@@ -39,7 +39,7 @@ export default class MobileNavBarContainer extends Component {
                 <Sidebar.Pushable>
                     <Sidebar
                         as={Menu}
-                        animation="uncover"
+                        animation="push"
                         inverted
                         vertical
                         visible={sidebarOpened}
@@ -64,29 +64,28 @@ export default class MobileNavBarContainer extends Component {
                         style={{minHeight: "100vh"}}
                     >
                         <Segment
-                            inverted
                             textAlign="center"
                             style={{minHeight: 350, padding: "1em 0em"}}
                             vertical
                         >
                             <Container>
-                                <Menu inverted pointing secondary size="large">
+                                <Menu pointing secondary size="large">
                                     <Menu.Item onClick={this.handleToggle}>
                                         <Icon name="sidebar"/>
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Button href="./connection" as="a" inverted>
+                                        <Button href="./connection" as="a">
                                             Connexion
                                         </Button>
-                                        <Button href="./enregistrement" as="a" inverted style={{marginLeft: "0.5em"}}>
+                                        <Button href="./enregistrement" as="a" style={{marginLeft: "0.5em"}}>
                                             Enregistrement
                                         </Button>
                                     </Menu.Item>
                                 </Menu>
                             </Container>
+                            {children}
                         </Segment>
 
-                        {children}
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </Responsive>

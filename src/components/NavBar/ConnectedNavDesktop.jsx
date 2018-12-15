@@ -61,12 +61,6 @@ export default class DesktopConnectedNavBarContainer extends Component {
               size="large"
             >
               <Container fluid>
-                {/* <Image
-                  size="tiny"
-                  src={logoLinear}
-                  style={{ marginRight: "1.5em" }}
-                  wrapped
-                /> */}
                 <Menu.Item
                   as="a"
                   active
