@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Radio, Dropdown, Button, Container, Segment} from "semantic-ui-react";
+import {Form, Radio, Dropdown, Button, Container, Segment, Card} from "semantic-ui-react";
 import Activite from "./secteurActivite.jsx";
 import axios from "axios";
 import NavBarLayout from "../components/NavBar/NavBar";
@@ -11,38 +11,73 @@ import Results from "../components/Annuaire/Results";
 
 export default class RadioExampleRadioGroup extends Component {
     state = {};
-    handleChange = (e, {value}) => this.setState({value});
-    handleSelect = (e, {sector}) => this.setState({sector});
+
+    handleChange = (e, {value}) => this.setState({type:value});
+
+    handleSelect = (e, {value}) => this.setState(value>0 ? {sectorId:value} : {sectorId:0});
 
     constructor(props) {
         super(props);
         this.state = {
             companies: "",
-            sector: "",
-            value: "member",
+            sectorId: 0,
+            type: "member",
+            sectors: [],
             results: []
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.getSectors = this.getSectors.bind(this);
     }
 
-    onSubmit(type, sector) {
-        if (type === "member") {
-            const request = createRequest();
-            const getMembers = apiGetRequest(request);
-            getMembers("/api/members").then(response => {
-                console.log(response.data);
-                this.setState({results: response.data});
-            });
-        } else {
-            const request = createRequest();
-            const getCompanies = apiGetRequest(request);
-            getCompanies("/api/companies").then(response => {
-                this.setState({results: response.data});
-            });
+    getSectors() {
+        const request = createRequest();
+        const getSectors = apiGetRequest(request);
+        getSectors("/api/sectors").then(response => {
+            let sectors = response.data.map(sector => (
+                {
+                    key: sector.id,
+                    value: sector.id,
+                    text: sector.name
+                }
+            ));
+            this.setState({sectors});
+        });
+    }
+
+    onSubmit() {
+        const request = createRequest();
+        const getResults = apiGetRequest(request);
+
+        if(this.state.sectorId !== 0) {
+            if (this.state.type === "member") {
+                getResults("/api/sectors/" + this.state.sectorId + "/members").then(response => {
+                    this.setState({results: response.data});
+                });
+            } else {
+                getResults("/api/sectors/" + this.state.sectorId + "/companies").then(response => {
+                    this.setState({results: response.data});
+                });
+            }
+        }
+        else {
+            if (this.state.type === "member") {
+                getResults("/api/members").then(response => {
+                    this.setState({results: response.data});
+                });
+            } else {
+                getResults("/api/companies").then(response => {
+                    this.setState({results: response.data});
+                });
+            }
         }
     }
 
     render() {
+        if (this.state.sectors.length === 0) {
+            this.getSectors();
+        }
         return (
             <NavBarLayout userData={this.state}>
                 <Container>
@@ -53,9 +88,7 @@ export default class RadioExampleRadioGroup extends Component {
                         <Form
                             onSubmit={e => {
                                 e.preventDefault();
-                                const type = this.state.value;
-                                const sector = this.state.sector;
-                                this.onSubmit(type, sector);
+                                this.onSubmit();
                             }}
                         >
                             <Form.Field>
@@ -63,7 +96,7 @@ export default class RadioExampleRadioGroup extends Component {
                                     label="Membre"
                                     name="radioGroup"
                                     value="member"
-                                    checked={this.state.value === "member"}
+                                    checked={this.state.type === "member"}
                                     onChange={this.handleChange}
                                 />
                             </Form.Field>
@@ -72,7 +105,7 @@ export default class RadioExampleRadioGroup extends Component {
                                     label="Entreprise"
                                     name="radioGroup"
                                     value="company"
-                                    checked={this.state.value === "company"}
+                                    checked={this.state.type === "company"}
                                     onChange={this.handleChange}
                                 />
                             </Form.Field>
@@ -82,7 +115,8 @@ export default class RadioExampleRadioGroup extends Component {
                                     placeholder="Secteur d'activité"
                                     fluid
                                     selection
-                                    options={Activite}
+                                    clearable
+                                    options={this.state.sectors}
                                     onChange={this.handleSelect}
                                 />
                             </Form.Field>
@@ -96,7 +130,9 @@ export default class RadioExampleRadioGroup extends Component {
                              position="center"
                              textAlign="center">
 
-                        <Results type={this.state.value} usersData={this.state.results}/>
+                        <Card.Group>
+                            <Results type={this.state.type} usersData={this.state.results}/>
+                        </Card.Group>
                     </Segment>
                 </Container>
             </NavBarLayout>

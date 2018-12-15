@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 
 import "./NavBar.css";
+import * as Auth from "../../api/Auth";
 
 export default class MobileConnectedNavBarContainer extends Component {
     state = {};
@@ -19,6 +20,7 @@ export default class MobileConnectedNavBarContainer extends Component {
         super(props);
         this.handlePusherClick = this.handlePusherClick.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     handlePusherClick = () => {
@@ -29,6 +31,10 @@ export default class MobileConnectedNavBarContainer extends Component {
 
     handleToggle = () =>
         this.setState({sidebarOpened: !this.state.sidebarOpened});
+
+    logOut = () => {
+        Auth.removeToken();
+    };
 
     render() {
         const {children} = this.props;
@@ -47,14 +53,11 @@ export default class MobileConnectedNavBarContainer extends Component {
                         <Menu.Item as="a" active href="./">
                             Accueil
                         </Menu.Item>
-                        <Menu.Item as="a" href="./entreprise">
-                            Entreprise
-                        </Menu.Item>
-                        <Menu.Item as="a" href="./membres">
-                            Membres
-                        </Menu.Item>
                         <Menu.Item as="a" href="./annuaire">
                             Annuaire
+                        </Menu.Item>
+                        <Menu.Item as="a" href="./" onClick={this.logOut}>
+                            Se déconnecter
                         </Menu.Item>
                     </Sidebar>
 
@@ -77,22 +80,12 @@ export default class MobileConnectedNavBarContainer extends Component {
                                         <Button as="a" href="./profil">
                                             Mon Profil
                                         </Button>
-                                        <Button
-                                            onClick={this.logOut}
-                                            as="a"
-                                            style={{ marginLeft: "0.5em" }}
-                                            href="./"
-                                        >
-                                            Se Déconnecter
-                                        </Button>
                                     </Menu.Item>
                                 </Menu>
                             </Container>
 
                             {children}
                         </Segment>
-
-
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </Responsive>

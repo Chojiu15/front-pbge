@@ -64,16 +64,6 @@ export default class DesktopNavBarContainer extends Component {
                 >
                   Accueil
                 </Menu.Item>
-
-                <Menu.Item
-                  as="a"
-                  active
-                  href="./annuaire"
-                  color="green"
-                  style={{ marginBottom: "0.2em" }}
-                >
-                  Annuaire
-                </Menu.Item>
                 <Menu.Item position="right">
                   <Button as="a" inverted={!fixed} href="./connexion">
                     Connectez-vous

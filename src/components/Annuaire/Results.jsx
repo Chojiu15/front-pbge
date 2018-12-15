@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import MemberResult from "./MemberResult";
-
+import CompanyResult from "./CompanyResult";
 
 export default class Results extends Component {
 
@@ -9,13 +9,14 @@ export default class Results extends Component {
     }
 
     render() {
-        console.log(this.props);
-
-        if(this.props.type === "member") {
-            return this.props.usersData.map(userData => <MemberResult userData={userData}/>);
-        }
-        else {
-            return <p>Companies</p>;
+        if (this.props.type === "member") {
+            return this.props.usersData.map((userData, i) => (
+                <MemberResult key={i} userData={userData}/>
+            ));
+        } else {
+            return this.props.usersData.map((userData, i) => (
+                <CompanyResult key={i} userData={userData}/>
+            ));
         }
     }
 }

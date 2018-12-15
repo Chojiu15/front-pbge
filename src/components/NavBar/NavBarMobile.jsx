@@ -47,14 +47,8 @@ export default class MobileNavBarContainer extends Component {
                         <Menu.Item as="a" active href="./">
                             Accueil
                         </Menu.Item>
-                        <Menu.Item as="a" href="./entreprise">
-                            Entreprise
-                        </Menu.Item>
-                        <Menu.Item as="a" href="./membres">
-                            Membres
-                        </Menu.Item>
-                        <Menu.Item as="a" href="./annuaire">
-                            Annuaire
+                        <Menu.Item as="a" href="./enregistrement">
+                            Enregistrement
                         </Menu.Item>
                     </Sidebar>
 
@@ -74,11 +68,8 @@ export default class MobileNavBarContainer extends Component {
                                         <Icon name="sidebar"/>
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Button href="./connection" as="a">
+                                        <Button href="./connexion" as="a">
                                             Connexion
-                                        </Button>
-                                        <Button href="./enregistrement" as="a" style={{marginLeft: "0.5em"}}>
-                                            Enregistrement
                                         </Button>
                                     </Menu.Item>
                                 </Menu>

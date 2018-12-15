@@ -4,6 +4,7 @@ import NavBarLayout from "../components/NavBar/NavBar";
 import * as Auth from "../api/Auth.js";
 import {createTokenRequest} from "../api/Request.params";
 import HomeContent from "../components/Homepage/HomeContent";
+import ConnectedHomeContent from "../components/Homepage/ConnectedHomeContent";
 
 export default class HomepageLayout extends Component {
 
@@ -41,10 +42,20 @@ export default class HomepageLayout extends Component {
         if(!this.state.isAuthenticated) {
             this.loginCheck();
         }
-        return (
-            <div>
-                <NavBarLayout userData={this.state} children={<HomeContent/>}/>
-            </div>
-        );
+        if(this.state.isAuthenticated) {
+            return (
+                <div>
+                    <NavBarLayout userData={this.state} children={<ConnectedHomeContent/>}/>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <NavBarLayout userData={this.state} children={<HomeContent/>}/>
+                </div>
+            );
+        }
+
     }
 }

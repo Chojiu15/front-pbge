@@ -117,7 +117,6 @@ const HomeContent = () => (
                     entre les diplômés et les entrepreneurs du Pays basque.
                 </p>
                 <Button
-                    style={{marginLeft: "19em"}}
                     color="green"
                     target="blank"
                     href="https://www.helloasso.com/associations/des-territoires-aux-grandes-ecoles/adhesions/plateforme-d-adhesions-et-de-dons-2018-2019"

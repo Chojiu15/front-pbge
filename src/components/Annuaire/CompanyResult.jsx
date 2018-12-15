@@ -1,13 +1,13 @@
 import React from "react";
 import {Card, Image, Button} from "semantic-ui-react";
 
-const MemberResult = ({userData}) => (
+const CompanyResult = ({userData}) => (
     <Card centered>
         <Card.Content>
             <Image floated='left' size='medium' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'/>
-            <Card.Header>{userData.name} {userData.surname}</Card.Header>
+            <Card.Header>{userData.name}</Card.Header>
             <Card.Description>
-                <p>{userData.email}</p>
+                <p>{userData.companyEmail}</p>
                 <p>{userData.phone}</p>
             </Card.Description>
         </Card.Content>
@@ -20,4 +20,4 @@ const MemberResult = ({userData}) => (
         </Card.Content>
     </Card>
 );
-export default MemberResult;
+export default CompanyResult;

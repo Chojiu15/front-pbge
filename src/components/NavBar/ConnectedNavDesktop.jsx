@@ -73,25 +73,7 @@ export default class DesktopConnectedNavBarContainer extends Component {
                 <Menu.Item
                   as="a"
                   active
-                  href="./"
-                  color="green"
-                  style={{ marginBottom: "0.2em" }}
-                >
-                  Entreprises
-                </Menu.Item>
-                <Menu.Item
-                  as="a"
-                  active
-                  href="./"
-                  color="red"
-                  style={{ marginBottom: "0.2em" }}
-                >
-                  Membres
-                </Menu.Item>
-                <Menu.Item
-                  as="a"
-                  active
-                  href="./"
+                  href="./annuaire"
                   color="green"
                   style={{ marginBottom: "0.2em" }}
                 >
