@@ -19,7 +19,8 @@ export default class RadioExampleRadioGroup extends Component {
         this.state = {
             companies: "",
             sector: "",
-            value: "member"
+            value: "member",
+            results: ""
         };
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -30,12 +31,13 @@ export default class RadioExampleRadioGroup extends Component {
             const getMembers = apiGetRequest(request);
             getMembers("/api/members").then(response => {
                 console.log(response.data);
+                this.setState({results: response.data});
             });
         } else {
             const request = createRequest();
-            const getMembers = apiGetRequest(request);
-            getMembers("/api/companies").then(response => {
-                console.log(response.data);
+            const getCompanies = apiGetRequest(request);
+            getCompanies("/api/companies").then(response => {
+                this.setState({results: response.data});
             });
         }
     }
@@ -94,7 +96,7 @@ export default class RadioExampleRadioGroup extends Component {
                              position="center"
                              textAlign="center">
 
-                        <Results type={this.state.value}/>
+                        <Results type={this.state.value} />
                     </Segment>
                 </Container>
             </NavBarLayout>
