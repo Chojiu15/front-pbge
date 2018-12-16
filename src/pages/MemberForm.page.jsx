@@ -61,7 +61,6 @@ export default class MemberFormPage extends React.Component {
           currentSector: response.data,
           sectorId: response.data.id
         });
-        console.log(this.state.currentSector.id);
       })
     }
 
@@ -118,8 +117,6 @@ export default class MemberFormPage extends React.Component {
       birthplace: birthplace,
       description: description,
       sector: sector
-    }).then(response => {
-      console.log(response.data);
     });
 
 
