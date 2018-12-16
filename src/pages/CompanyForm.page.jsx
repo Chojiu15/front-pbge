@@ -165,8 +165,7 @@ export default class CompanyFormPage extends React.Component {
     }
 
     return (
-        <Segment>
-      <Form onSubmit={this.handleOnSubmit}>
+      <Form className="profile" onSubmit={this.handleOnSubmit}>
         <Form.Group widths="equal">
           <Form.Field>
             <label htmlFor="dirName">Organisation : (*) </label>
@@ -318,7 +317,6 @@ export default class CompanyFormPage extends React.Component {
           Enregistrer
         </Button>
       </Form>
-        </Segment>
     );
   }
 }
