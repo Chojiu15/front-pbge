@@ -39,7 +39,6 @@ export default class DesktopConnectedNavBarContainer extends Component {
   render() {
     const { children } = this.props;
     const { fixed } = this.state;
-
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
