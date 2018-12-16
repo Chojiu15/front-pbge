@@ -87,7 +87,7 @@ export default class MyProfile extends Component {
 
     render() {
         if (!this.state.isAuthenticated) {
-            return <Redirect to={"./connexion"}/>
+            return <Redirect to={"/connexion"}/>
         } else {
             if (this.state.userType === "company" && this.state.userData !== null) {
                 return (

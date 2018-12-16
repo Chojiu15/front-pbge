@@ -44,10 +44,10 @@ export default class MobileNavBarContainer extends Component {
                         vertical
                         visible={sidebarOpened}
                     >
-                        <Menu.Item as="a" active href="./">
+                        <Menu.Item as="a" active href="/">
                             Accueil
                         </Menu.Item>
-                        <Menu.Item as="a" href="./enregistrement">
+                        <Menu.Item as="a" href="/enregistrement">
                             Enregistrement
                         </Menu.Item>
                     </Sidebar>
@@ -68,7 +68,7 @@ export default class MobileNavBarContainer extends Component {
                                         <Icon name="sidebar"/>
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Button href="./connexion" as="a">
+                                        <Button href="/connexion" as="a">
                                             Connexion
                                         </Button>
                                     </Menu.Item>

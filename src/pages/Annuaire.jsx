@@ -121,7 +121,7 @@ export default class RadioExampleRadioGroup extends Component {
 
     render() {
         if(!this.state.isAuthenticated) {
-            return <Redirect to={"./connexion"}/>
+            return <Redirect to={"/connexion"}/>
         }
         else {
             if (this.state.sectors.length === 0) {

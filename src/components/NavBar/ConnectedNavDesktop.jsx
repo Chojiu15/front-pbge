@@ -63,7 +63,7 @@ export default class DesktopConnectedNavBarContainer extends Component {
                 <Menu.Item
                   as="a"
                   active
-                  href="./"
+                  href="/"
                   color="red"
                   style={{ marginLeft: "1em", marginBottom: "0.2em" }}
                 >
@@ -72,14 +72,14 @@ export default class DesktopConnectedNavBarContainer extends Component {
                 <Menu.Item
                   as="a"
                   active
-                  href="./annuaire"
+                  href="/annuaire"
                   color="green"
                   style={{ marginBottom: "0.2em" }}
                 >
                   Annuaire
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed} href="./profil">
+                  <Button as="a" inverted={!fixed} href="/profil">
                     Mon Profil
                   </Button>
                   <Button
@@ -87,7 +87,7 @@ export default class DesktopConnectedNavBarContainer extends Component {
                     as="a"
                     inverted={!fixed}
                     style={{ marginLeft: "0.5em" }}
-                    href="./"
+                    href="/"
                   >
                     Se Déconnecter
                   </Button>

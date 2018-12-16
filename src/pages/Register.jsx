@@ -58,7 +58,7 @@ export default class RegisterForm extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="./connexion" />;
+      return <Redirect to="/connexion" />;
     } else {
       return (
         <NavBarLayout userData={this.state}>

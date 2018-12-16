@@ -50,13 +50,13 @@ export default class MobileConnectedNavBarContainer extends Component {
                         vertical
                         visible={sidebarOpened}
                     >
-                        <Menu.Item as="a" active href="./">
+                        <Menu.Item as="a" active href="/">
                             Accueil
                         </Menu.Item>
-                        <Menu.Item as="a" href="./annuaire">
+                        <Menu.Item as="a" href="/annuaire">
                             Annuaire
                         </Menu.Item>
-                        <Menu.Item as="a" href="./" onClick={this.logOut}>
+                        <Menu.Item as="a" href="/" onClick={this.logOut}>
                             Se déconnecter
                         </Menu.Item>
                     </Sidebar>
@@ -77,7 +77,7 @@ export default class MobileConnectedNavBarContainer extends Component {
                                         <Icon name="sidebar"/>
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Button as="a" href="./profil">
+                                        <Button as="a" href="/profil">
                                             Mon Profil
                                         </Button>
                                     </Menu.Item>

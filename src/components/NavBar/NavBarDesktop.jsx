@@ -58,20 +58,20 @@ export default class DesktopNavBarContainer extends Component {
                 <Menu.Item
                   as="a"
                   active
-                  href="./"
+                  href="/"
                   color="red"
                   style={{ marginLeft: "1em", marginBottom: "0.2em" }}
                 >
                   Accueil
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed} href="./connexion">
+                  <Button as="a" inverted={!fixed} href="/connexion">
                     Connectez-vous
                   </Button>
                   <Button
                     as="a"
                     inverted={!fixed}
-                    href="./enregistrement"
+                    href="/enregistrement"
                     style={{ marginLeft: "0.5em" }}
                   >
                     Enregistrez-vous
