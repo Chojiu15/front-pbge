@@ -20,7 +20,7 @@ const HomeContent = () => (
                  textAlign="center">
             <Header
                 as="h2"
-                style={{fontSize: "3em", color: "red"}}
+                style={{fontSize: "3em", color: "green"}}
             >
                 Entreprendre au Pays-Basque
             </Header>
@@ -102,7 +102,10 @@ const HomeContent = () => (
                 Nous connaître
             </Button>
         </Segment>
-        <Segment style={{padding: "2em 0em"}} vertical>
+        <Segment style={{padding: "2em 0em"}}
+                 vertical
+                 position="center"
+                 textAlign="center">
             <Container text>
                 <Header as="h3" style={{fontSize: "2em"}}>
                     Qui sommes nous ?
