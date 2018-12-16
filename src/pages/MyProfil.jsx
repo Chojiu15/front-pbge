@@ -22,6 +22,7 @@ export default class MyProfile extends Component {
             userData: null
         };
         this.loginCheck = this.loginCheck.bind(this);
+        this.getUserData = this.getUserData.bind(this);
     }
 
     getUserData() {

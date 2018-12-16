@@ -13,10 +13,11 @@
 import React from "react";
 import axios from "axios"; // HTTP library to make http request @see : https://github.com/axios/axios
 import { Redirect, Link } from "react-router-dom";
-import { Button, Form, Segment } from "semantic-ui-react";
+import {Button, Dropdown, Form, Segment} from "semantic-ui-react";
 
 import {baseUrl, createRequest} from "../api/Request.params";
 import * as Api from "../api/Api";
+import {apiGetRequest} from "../api/Api";
 
 export default class MemberFormPage extends React.Component {
 
@@ -27,18 +28,24 @@ export default class MemberFormPage extends React.Component {
       currentLocation: null,
       currentSector: null,
       redirectTo: null,
-      isFetching: true
+      isFetching: true,
+      sectors: [],
+      sectorId: 0
     };
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.getSectors = this.getSectors.bind(this)
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
 
+    if (this.state.sectors.length === 0) {
+      this.getSectors();
+    }
+
     const request = createRequest();
     const getData = Api.apiGetRequest(request);
-
-    console.log(this.props.userData);
 
     if(this.props.userData.location !== null) {
       getData(this.props.userData.location).then(response => {
@@ -51,13 +58,32 @@ export default class MemberFormPage extends React.Component {
     if(this.props.userData.sector !== null) {
       getData(this.props.userData.sector).then(response => {
         this.setState({
-          currentSector: response.data
+          currentSector: response.data,
+          sectorId: response.data.id
         });
+        console.log(this.state.currentSector.id);
       })
     }
 
     this.setState({
       isFetching: false
+    });
+  }
+
+  handleSelect = (e, {value}) => this.setState(value>0 ? {sectorId:value} : {sectorId:0});
+
+  getSectors() {
+    const request = createRequest();
+    const getSectors = apiGetRequest(request);
+    getSectors("/api/sectors").then(response => {
+      let sectors = response.data.map(sector => (
+          {
+            key: sector.id,
+            value: sector.id,
+            text: sector.name
+          }
+      ));
+      this.setState({sectors});
     });
   }
 
@@ -74,7 +100,11 @@ export default class MemberFormPage extends React.Component {
     const description = e.currentTarget.elements.description.value;
     const zipcode = parseInt(e.currentTarget.elements.zipcode.value);
     const city = e.currentTarget.elements.city.value;
-    const namesector = e.currentTarget.elements.sector.value;
+
+    let sector = null;
+    if(this.state.sectorId > 0) {
+      sector = "/api/sectors/" + this.state.sectorId;
+    }
 
     const request = createRequest();
     const putData = Api.apiPutRequest(request);
@@ -86,10 +116,12 @@ export default class MemberFormPage extends React.Component {
       phone: phone,
       address: address,
       birthplace: birthplace,
-      description: description
+      description: description,
+      sector: sector
     }).then(response => {
       console.log(response.data);
     });
+
 
     // const { data: currentCompany } = await axios.put(
     //   baseUrl + `/api/companies/${idcomp}.json`,
@@ -103,22 +135,6 @@ export default class MemberFormPage extends React.Component {
     //     description
     //   }
     // );
-
-    // const { data: currentLocation } = await axios.put(
-    //   baseUrl + `${currentCompany.location}.json`,
-    //   {
-    //     zipcode,
-    //     city
-    //   }
-    // );
-    //
-    // const { data: currentSector } = await axios.put(
-    //   baseUrl + `${currentCompany.sector}.json`,
-    //   {
-    //     name: namesector
-    //   }
-    // );
-    //
     this.setState({
       // currentCompany,
       // currentLocation,
@@ -187,38 +203,17 @@ export default class MemberFormPage extends React.Component {
             </Form.Field>
           </Form.Group>
           <label htmlFor="dirsector">Secteur : </label>
-          <Form.Field id="dirsector" name="sector" control="select">
-            <option value={currentSector ? currentSector.name : null}> {currentSector ? currentSector.name : null}</option>
-            <option value="Agroalimentaire">Agroalimentaire</option>}
-            <option value="biosciences, pharmacie et santé,recherche">
-              Biosciences, pharmacie et santé,recherche
-            </option>
-            <option value="chimie, sciences de l'innovation">
-              Chimie, sciences de l'innovation
-            </option>
-            <option value="informatique, nouvelles technologies">
-              Informatique, nouvelles technologies
-            </option>
-            <option value="Journalisme ">Journalisme </option>
-            <option value="Architecture/ Urbanisme/ Immobilier">
-              Architecture/ Urbanisme/ Immobilier
-            </option>
-            <option value="Sciences sociales et humaines">
-              Sciences sociales et humaines
-            </option>
-            <option value="Droit">Droit</option>
-            <option value="Finance, Comptabilité, Banque,">
-              Finance, Comptabilité, Banque
-            </option>
-            <option value="Conseil et stratégie">Conseil et stratégie</option>
-            <option value="Administration publique">
-              Administration publique
-            </option>
-            <option value="Enseignement">Enseignement</option>
-            <option value="Communication / Marketing">
-              Communication / Marketing
-            </option>
-            <option value="Autres">Autres</option>
+          <Form.Field>
+            <Dropdown
+                name="sector"
+                placeholder="Secteur d'activité"
+                fluid
+                selection
+                clearable
+                options={this.state.sectors}
+                onChange={this.handleSelect}
+                value={this.state.sectorId ? this.state.sectorId : null}
+            />
           </Form.Field>
           <Form.Group widths="equal">
             <Form.Field>
@@ -236,6 +231,7 @@ export default class MemberFormPage extends React.Component {
                   id="zipcode"
                   name="zipcode"
                   type="text"
+                  disabled
                   defaultValue={currentLocation ? currentLocation.zipcode : ""}
               />
             </Form.Field>
@@ -245,6 +241,7 @@ export default class MemberFormPage extends React.Component {
                   id="location"
                   name="city"
                   type="text"
+                  disabled
                   defaultValue={currentLocation ? currentLocation.city : ""}
               />
             </Form.Field>
