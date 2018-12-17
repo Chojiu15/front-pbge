@@ -229,8 +229,8 @@ export default class CompanyFormPage extends React.Component {
             )}
           </Form.Field>
           <Form.Field>
-            <Link to="/job_offers/new">
-              <Button>Ajouter une offre</Button>
+            <Link to="/profil">
+              <Button disabled>Ajouter une offre</Button>
             </Link>
           </Form.Field>
         </Form.Group>
