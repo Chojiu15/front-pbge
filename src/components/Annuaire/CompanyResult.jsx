@@ -1,5 +1,6 @@
 import React from "react";
-import {Card, Image, Button} from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
+
 
 const CompanyResult = ({userData}) => (
     <Card centered>
