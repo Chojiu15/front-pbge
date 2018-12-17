@@ -13,16 +13,15 @@
 import React from "react";
 import axios from "axios"; // HTTP library to make http request @see : https://github.com/axios/axios
 import { Redirect, Link } from "react-router-dom";
-import {Button, Dropdown, Form, Segment} from "semantic-ui-react";
+import { Button, Dropdown, Form, Segment } from "semantic-ui-react";
 
-import {baseUrl, createRequest} from "../api/Request.params";
+import { baseUrl, createRequest } from "../api/Request.params";
 import List from "../components/List";
 import LinkJobOffer from "../components/Companies/LinkJobOffer";
 import * as Api from "../api/Api";
-import {apiGetRequest} from "../api/Api";
+import { apiGetRequest } from "../api/Api";
 
 export default class CompanyFormPage extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -37,12 +36,11 @@ export default class CompanyFormPage extends React.Component {
     };
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.getSectors = this.getSectors.bind(this)
+    this.getSectors = this.getSectors.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
-
     if (this.state.sectors.length === 0) {
       this.getSectors();
     }
@@ -50,54 +48,56 @@ export default class CompanyFormPage extends React.Component {
     const request = createRequest();
     const getData = Api.apiGetRequest(request);
 
-    if(this.props.userData.location !== null) {
+    if (this.props.userData.location !== null) {
       getData(this.props.userData.location).then(response => {
         this.setState({
           currentLocation: response.data
-        })
+        });
       });
     }
 
-    if(this.props.userData.sector !== null) {
+    if (this.props.userData.sector !== null) {
       getData(this.props.userData.sector).then(response => {
         this.setState({
           currentSector: response.data,
           sectorId: response.data.id
         });
-      })
+      });
     }
 
-    if (this.props.userData.jobOffer && this.props.userData.jobOffer.length > 0) {
-      this.props.userData.jobOffer.map(
-          jobRoute => getData(jobRoute)
-              .then(response => {
-                let jobOffers = this.state.currentJobOffers;
-                jobOffers.push(response.data);
-                this.setState({
-                  currentJobOffers: jobOffers
-                })
-              }));
+    if (
+      this.props.userData.jobOffer &&
+      this.props.userData.jobOffer.length > 0
+    ) {
+      this.props.userData.jobOffer.map(jobRoute =>
+        getData(jobRoute).then(response => {
+          let jobOffers = this.state.currentJobOffers;
+          jobOffers.push(response.data);
+          this.setState({
+            currentJobOffers: jobOffers
+          });
+        })
+      );
     }
 
     this.setState({
       isFetching: false
-        });
+    });
   }
 
-  handleSelect = (e, {value}) => this.setState(value>0 ? {sectorId:value} : {sectorId:0});
+  handleSelect = (e, { value }) =>
+    this.setState(value > 0 ? { sectorId: value } : { sectorId: 0 });
 
   getSectors() {
     const request = createRequest();
     const getSectors = apiGetRequest(request);
     getSectors("/api/sectors").then(response => {
-      let sectors = response.data.map(sector => (
-          {
-            key: sector.id,
-            value: sector.id,
-            text: sector.name
-          }
-      ));
-      this.setState({sectors});
+      let sectors = response.data.map(sector => ({
+        key: sector.id,
+        value: sector.id,
+        text: sector.name
+      }));
+      this.setState({ sectors });
     });
   }
 
@@ -115,7 +115,7 @@ export default class CompanyFormPage extends React.Component {
     const city = e.currentTarget.elements.city.value;
 
     let sector = null;
-    if(this.state.sectorId > 0) {
+    if (this.state.sectorId > 0) {
       sector = "/api/sectors/" + this.state.sectorId;
     }
 
@@ -173,7 +173,9 @@ export default class CompanyFormPage extends React.Component {
               id="dirCompanyEmail"
               name="companyEmail"
               type="text"
-              defaultValue={currentCompany.companyEmail ? currentCompany.companyEmail : ""}
+              defaultValue={
+                currentCompany.companyEmail ? currentCompany.companyEmail : ""
+              }
             />
           </Form.Field>
           <Form.Field>
@@ -182,7 +184,9 @@ export default class CompanyFormPage extends React.Component {
               id="dirPdgName"
               name="pdgName"
               type="text"
-              defaultValue={currentCompany.pdgName ? currentCompany.pdgName : ""}
+              defaultValue={
+                currentCompany.pdgName ? currentCompany.pdgName : ""
+              }
               required
             />
           </Form.Field>
@@ -200,14 +204,14 @@ export default class CompanyFormPage extends React.Component {
         <label htmlFor="dirsector">Secteur : </label>
         <Form.Field>
           <Dropdown
-              name="sector"
-              placeholder="Secteur d'activité"
-              fluid
-              selection
-              clearable
-              options={this.state.sectors}
-              onChange={this.handleSelect}
-              value={this.state.sectorId ? this.state.sectorId : null}
+            name="sector"
+            placeholder="Secteur d'activité"
+            fluid
+            selection
+            clearable
+            options={this.state.sectors}
+            onChange={this.handleSelect}
+            value={this.state.sectorId ? this.state.sectorId : null}
           />
         </Form.Field>
         <Form.Group widths="three">
@@ -241,7 +245,9 @@ export default class CompanyFormPage extends React.Component {
               id="diraddress"
               name="address"
               type="text"
-              defaultValue={currentCompany.address ? currentCompany.address : ""}
+              defaultValue={
+                currentCompany.address ? currentCompany.address : ""
+              }
             />
           </Form.Field>
           <Form.Field>
@@ -280,7 +286,9 @@ export default class CompanyFormPage extends React.Component {
             id="dirdescription"
             name="description"
             type="text"
-            defaultValue={currentCompany.description ? currentCompany.description : ""}
+            defaultValue={
+              currentCompany.description ? currentCompany.description : ""
+            }
           />
         </Form.Field>
         <br />

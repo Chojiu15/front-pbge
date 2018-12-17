@@ -13,7 +13,7 @@ import {
 import NavBarLayout from "../components/NavBar/NavBar";
 import { Redirect } from "react-router-dom";
 
-import {createRequest} from "../api/Request.params";
+import { createRequest } from "../api/Request.params";
 import * as Register from "../api/Register";
 const MEMBER_ROUTE = "/member/register";
 const COMPANY_ROUTE = "/company/register";
@@ -35,25 +35,25 @@ export default class RegisterForm extends Component {
   handleRadioChange = (e, { value }) => this.setState({ value });
 
   onSubmit(newUser, usertype) {
-
     let route = "";
     usertype === "member" ? (route = MEMBER_ROUTE) : (route = COMPANY_ROUTE);
 
     const request = createRequest();
     const register = Register.registerRequest(request);
-    register(route, newUser).then(response => {
-      this.setState({ redirect: true });
-    }).catch(e => {
-      if (typeof (e.response) !== "undefined") {
-        if(e.response.status === 403) {
-          alert(USER_EXISTS_MSG);
+    register(route, newUser)
+      .then(response => {
+        this.setState({ redirect: true });
+      })
+      .catch(e => {
+        if (typeof e.response !== "undefined") {
+          if (e.response.status === 403) {
+            alert(USER_EXISTS_MSG);
+          } else {
+            alert(e.message);
+          }
+          this.setState({ loading: false });
         }
-        else {
-          alert(e.message);
-        }
-        this.setState({loading: false})
-      }
-    });
+      });
   }
 
   render() {
@@ -80,37 +80,38 @@ export default class RegisterForm extends Component {
                   Créer un compte
                 </Header>
 
-
                 <Form
-                    size={"large"}
-                    loading={this.state.loading}
-                    onSubmit={e => {
-                      e.preventDefault();
-                      const name = e.target.elements.lastName.value;
-                      const surname = e.target.elements.firstName.value;
-                      const username = e.target.elements.username.value;
-                      const password = e.target.elements.password.value;
-                      const passwordConfirm = e.target.elements.passwordConfirm.value;
-                      if(password === passwordConfirm) {
-                        this.setState({loading: true});
-                        this.onSubmit(
-                            { name, surname, username, password },
-                            this.state.value
-                        );
-                      }
-                      else {
-                        this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
-                      }
-                    }}
+                  size={"large"}
+                  loading={this.state.loading}
+                  onSubmit={e => {
+                    e.preventDefault();
+                    const name = e.target.elements.lastName.value;
+                    const surname = e.target.elements.firstName.value;
+                    const username = e.target.elements.username.value;
+                    const password = e.target.elements.password.value;
+                    const passwordConfirm =
+                      e.target.elements.passwordConfirm.value;
+                    if (password === passwordConfirm) {
+                      this.setState({ loading: true });
+                      this.onSubmit(
+                        { name, surname, username, password },
+                        this.state.value
+                      );
+                    } else {
+                      this.setState({
+                        errorMsg: "Les mots de passe ne sont pas indentiques"
+                      });
+                    }
+                  }}
                 >
                   <Segment>
                     <Form.Field>
                       <Radio
-                          label="Membre"
-                          name="radioGroup"
-                          value="member"
-                          checked={this.state.value === "member"}
-                          onChange={this.handleRadioChange}
+                        label="Membre"
+                        name="radioGroup"
+                        value="member"
+                        checked={this.state.value === "member"}
+                        onChange={this.handleRadioChange}
                       />
                     </Form.Field>
                     <Form.Field>
