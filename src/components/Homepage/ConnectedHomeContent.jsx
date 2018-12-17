@@ -73,7 +73,12 @@ const ConnectedHomeContent = () => (
         Nous connaître
       </Button>
     </Segment>
-    <Segment style={{ padding: "2em 0em" }} vertical>
+    <Segment
+      style={{ padding: "2em 0em" }}
+      position="center"
+      textAlign="center"
+      vertical
+    >
       <Container text>
         <Header as="h3" style={{ fontSize: "2em" }}>
           Qui sommes nous ?
