@@ -86,20 +86,40 @@ export default class RegisterForm extends Component {
                     loading={this.state.loading}
                     onSubmit={e => {
                       e.preventDefault();
-                      const name = e.target.elements.lastName.value;
-                      const surname = e.target.elements.firstName.value;
-                      const username = e.target.elements.username.value;
-                      const password = e.target.elements.password.value;
-                      const passwordConfirm = e.target.elements.passwordConfirm.value;
-                      if(password === passwordConfirm) {
-                        this.setState({loading: true});
-                        this.onSubmit(
-                            { name, surname, username, password },
-                            this.state.value
-                        );
+
+                      if(this.state.value === "member") {
+                        const name = e.target.elements.lastName.value;
+                        const surname = e.target.elements.firstName.value;
+                        const username = e.target.elements.username.value;
+                        const password = e.target.elements.password.value;
+                        const passwordConfirm = e.target.elements.passwordConfirm.value;
+                        if(password === passwordConfirm) {
+                          this.setState({loading: true});
+                          this.onSubmit(
+                              { name, surname, username, password },
+                              this.state.value
+                          );
+                        }
+                        else {
+                          this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
+                        }
                       }
                       else {
-                        this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
+                        const name = e.target.elements.lastName.value;
+                        const pdgName = e.target.elements.firstName.value;
+                        const username = e.target.elements.username.value;
+                        const password = e.target.elements.password.value;
+                        const passwordConfirm = e.target.elements.passwordConfirm.value;
+                        if(password === passwordConfirm) {
+                          this.setState({loading: true});
+                          this.onSubmit(
+                              { name, pdgName, username, password },
+                              this.state.value
+                          );
+                        }
+                        else {
+                          this.setState({errorMsg:"Les mots de passe ne sont pas indentiques"})
+                        }
                       }
                     }}
                 >
@@ -128,16 +148,16 @@ export default class RegisterForm extends Component {
                       type="name"
                       name="lastName"
                       fluid
-                      label="Nom"
-                      placeholder="Nom"
+                      label={this.state.value === "member" ? "Nom" : "Nom de l'entreprise"}
+                      placeholder={this.state.value === "member" ? "Nom" : "Nom de l'entreprise"}
                       required
                     />
                     <Form.Input
                       type="name"
                       name="firstName"
                       fluid
-                      label="Prénom"
-                      placeholder="Prénom"
+                      label={this.state.value === "member" ? "Prénom" : "Nom du directeur"}
+                      placeholder={this.state.value === "member" ? "Prénom" : "Nom du directeur"}
                       required
                     />
                     <Form.Input
