@@ -1303,7 +1303,7 @@ $.fn.search.settings = {
     noTemplate      : 'A valid template name was not specified.',
     oldSearchSyntax : 'searchFullText setting has been renamed fullTextSearch for consistency, please adjust your settings.',
     serverError     : 'There was an issue querying the server.',
-    maxResults      : 'Results must be an array to use maxResults setting',
+    maxResults      : 'Results.jsx must be an array to use maxResults setting',
     method          : 'The method you called is not defined.'
   },
 
@@ -1377,7 +1377,7 @@ $.fn.search.settings = {
         // message type
         if(type == 'empty') {
           html += ''
-            + '<div class="header">No Results</div class="header">'
+            + '<div class="header">No Results.jsx</div class="header">'
             + '<div class="description">' + message + '</div class="description">'
           ;
         }
