@@ -158,7 +158,7 @@ export default class MemberFormPage extends React.Component {
             <label htmlFor="name">Nom (*) :</label>
             <input
               id="name"
-              name="name"
+              name="lastName"
               type="text"
               defaultValue={currentMember.name}
               required
@@ -168,7 +168,7 @@ export default class MemberFormPage extends React.Component {
             <label htmlFor="surname">Prénom (*) : </label>
             <input
               id="surname"
-              name="surname"
+              name="firstName"
               type="text"
               defaultValue={currentMember.surname ? currentMember.surname : ""}
               required
