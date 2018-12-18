@@ -6,6 +6,9 @@ import RegisterForm from "./pages/Register";
 import Annuaire from "./pages/Annuaire";
 import Profil from "./pages/MyProfil";
 import JobOfferFormPage from "./pages/JobOfferForm.page"
+import Register from "./pages/Register";
+import Annuaire from "./pages/Annuaire";
+import Select from "./pages/Select.jsx";
 
 /**
  * TODO : Make each component
